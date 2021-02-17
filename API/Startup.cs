@@ -1,4 +1,5 @@
 
+using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,9 +28,11 @@ namespace API
         //we need to add our store context here
         public void ConfigureServices(IServiceCollection services)
         {
+            //Services order doesn't really matter
+            //THERE'S ADDSingleton() lifetime is forever
+            //There's AddScoped life time which is the life of a  http request
+            services.AddScoped<IProductRepository, ProductRepository>();
             //store context as service
-
-
             services.AddControllers();
             // this will generate code for we can scaffle it database 
             services.AddDbContext<StoreContext>(x =>
@@ -44,6 +47,7 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Middleware order is very important of how u place it!
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

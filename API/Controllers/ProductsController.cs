@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Threading.Tasks;
 using Core.Entities;
-using Infrastructure.Data;
+using Core.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace API.Controllers
 {
@@ -15,13 +16,13 @@ namespace API.Controllers
     // SOOOO WE NEED A CONSTructerrr
     public class ProductsController : ControllerBase
     {
-        private readonly StoreContext _context;
 
+        private readonly IProductRepository _repo;
         //So when a request comes in it hits our ProductsController
 
-        public ProductsController(StoreContext context)
+        public ProductsController(IProductRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
         //what we are returning
         [HttpGet]
@@ -37,7 +38,7 @@ namespace API.Controllers
 
             So you can use your buddy javascript to make it asyncronous
             */
-            var products = await _context.Products.ToListAsync();
+            var products = await _repo.GetProductsAsync();
 
 
             return Ok(products);
@@ -46,7 +47,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return await _context.Products.FindAsync(id);
+            return await _repo.GetProductByIdAsync(id);
         }
     }
 }
