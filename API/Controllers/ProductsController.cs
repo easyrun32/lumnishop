@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 namespace API.Controllers
-{
+{   //makes sure that the route is a string
     [ApiController]
     [Route("api/[controller]")]
 
@@ -48,6 +48,16 @@ namespace API.Controllers
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             return await _repo.GetProductByIdAsync(id);
+        }
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
+        {
+            return Ok(await _repo.GetProductsBrandsAsync());
+        }
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetTypesTypes()
+        {
+            return Ok(await _repo.GetProductsTypesAsync());
         }
     }
 }
