@@ -16,13 +16,20 @@ namespace API.Controllers
     // SOOOO WE NEED A CONSTructerrr
     public class ProductsController : ControllerBase
     {
+        private readonly IGenericRepository<Product> _productsRepo;
+        private readonly IGenericRepository<ProductBrand> _productBrandRepo;
+        private readonly IGenericRepository<ProductType> _productTypeRepo;
 
-        private readonly IProductRepository _repo;
+
         //So when a request comes in it hits our ProductsController
 
-        public ProductsController(IProductRepository repo)
+        public ProductsController(IGenericRepository<Product> productsRepo,
+         IGenericRepository<ProductBrand> productBrandRepo,
+          IGenericRepository<ProductType> productTypeRepo)
         {
-            _repo = repo;
+            _productTypeRepo = productTypeRepo;
+            _productBrandRepo = productBrandRepo;
+            _productsRepo = productsRepo;
         }
         //what we are returning
         [HttpGet]

@@ -32,6 +32,8 @@ namespace API
             //THERE'S ADDSingleton() lifetime is forever
             //There's AddScoped life time which is the life of a  http request
             services.AddScoped<IProductRepository, ProductRepository>();
+            //for the services to be used throughout our application
+            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             //store context as service
             services.AddControllers();
             // this will generate code for we can scaffle it database 
