@@ -8,6 +8,15 @@ using Microsoft.EntityFrameworkCore;
 namespace Infrastructure.Data
 {
     //From CORE/INTERFACE
+    /*
+    include prevent null values within our data
+    However we want to include generics to write less code 
+    when it becomes huge.
+    we use T but there is a problem and that we have no access to puting in T for
+    generics.
+
+    So we use the specification pattern to solve this
+    */
     public class ProductRepository : IProductRepository
     {
         private readonly StoreContext _context;

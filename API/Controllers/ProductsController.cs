@@ -13,7 +13,6 @@ namespace API.Controllers
     [Route("api/[controller]")]
 
     //inject store context into ProductsController 
-    // SOOOO WE NEED A CONSTructerrr
     public class ProductsController : ControllerBase
     {
         private readonly IGenericRepository<Product> _productsRepo;
@@ -21,7 +20,7 @@ namespace API.Controllers
         private readonly IGenericRepository<ProductType> _productTypeRepo;
 
 
-        //So when a request comes in it hits our ProductsController
+        // when a request comes in it hits our ProductsController
 
         public ProductsController(IGenericRepository<Product> productsRepo,
          IGenericRepository<ProductBrand> productBrandRepo,
@@ -45,7 +44,7 @@ namespace API.Controllers
 
             So you can use your buddy javascript to make it asyncronous
             */
-            var products = await _repo.GetProductsAsync();
+            var products = await _productsRepo.ListAllAsync();
 
 
             return Ok(products);
@@ -54,17 +53,17 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return await _repo.GetProductByIdAsync(id);
+            return await _productsRepo.GetByIdAsync(id);
         }
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
-            return Ok(await _repo.GetProductsBrandsAsync());
+            return Ok(await _productBrandRepo.ListAllAsync());
         }
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetTypesTypes()
         {
-            return Ok(await _repo.GetProductsTypesAsync());
+            return Ok(await _productTypeRepo.ListAllAsync());
         }
     }
 }
