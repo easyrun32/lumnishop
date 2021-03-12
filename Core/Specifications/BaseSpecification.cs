@@ -18,10 +18,16 @@ namespace Core.Specifications
     we solved this in the method
     protected void AddInclude 
     */
+
     public class BaseSpecification<T> : ISpecification<T>
     {
+        public BaseSpecification()
+        {
+
+        }
         public BaseSpecification(Expression<Func<T, bool>> criteria)
         {
+            //we want to get a product with a specific id
             Criteria = criteria;
 
         }

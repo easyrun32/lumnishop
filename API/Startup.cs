@@ -1,4 +1,5 @@
 
+using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace API
             services.AddScoped<IProductRepository, ProductRepository>();
             //for the services to be used throughout our application
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+            services.AddAutoMapper(typeof(MappingProfiles));
             //store context as service
             services.AddControllers();
             // this will generate code for we can scaffle it database 
