@@ -62,6 +62,8 @@ namespace API
             app.UseHttpsRedirection();
             //goes to controller
             app.UseRouting();
+
+            app.UseStaticFiles();
             //for authentication for l8r tho
             app.UseAuthorization();
 
