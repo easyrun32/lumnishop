@@ -1,20 +1,21 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Dtos;
+using API.Errors;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace API.Controllers
 {   //makes sure that the route is a string
-    [ApiController]
-    [Route("api/[controller]")]
+
 
     //inject store context into ProductsController 
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseApiController
     {
         private readonly IGenericRepository<Product> _productsRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepo;
@@ -59,10 +60,16 @@ namespace API.Controllers
         }
         //interpolation
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        // modify the swagger endpoint return json type {statusCode:0, message:'string"}
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
             var product = await _productsRepo.GetEntityWithSpec(spec);
+            //for swagger if a product is null
+            if (product == null) return NotFound(new ApiResponse(404));
+
             return _mapper.Map<Product, ProductToReturnDto>(product);
         }
         [HttpGet("brands")]
