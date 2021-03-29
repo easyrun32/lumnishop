@@ -1,17 +1,13 @@
-
-using System.Linq;
-using API.Errors;
+using API.Extensions;
 using API.Helpers;
 using API.Middleware;
-using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
+
 
 namespace API
 {
@@ -35,46 +31,31 @@ namespace API
             //Services order doesn't really matter acually there is an exception
             //THERE'S ADDSingleton() lifetime is forever
             //There's AddScoped life time which is the life of a  http request
-            services.AddScoped<IProductRepository, ProductRepository>();
-            //for the services to be used throughout our application
-            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+
             services.AddAutoMapper(typeof(MappingProfiles));
             //store context as service
             services.AddControllers();
+            // this is a cleanup
+            // but u can refer to this in extension folder  AddApplicationServices
+
+
+
 
             // this will generate code for we can scaffle it database 
             services.AddDbContext<StoreContext>(x =>
              x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+            //from extension folder 
+            services.AddApplicationServices();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-            });
+            services.AddSwaggerDocumentation();
 
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.InvalidModelStateResponseFactory = actionContext =>
-                {
-                    var errors = actionContext.ModelState
-                    .Where(e => e.Value.Errors.Count > 0)
-                    .SelectMany(x => x.Value.Errors)
-                    .Select(x => x.ErrorMessage).ToArray();
-
-                    var errorResponse = new ApiValidationErrorResponse
-                    {
-                        Errors = errors
-                    };
-                    return new BadRequestObjectResult(errorResponse);
-                };
-            });
         }
         //DEPDENCY INJECTION CONTAINER
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionMiddleware>();
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+
             //Middleware order is very important of how u place it!
 
 
@@ -87,6 +68,8 @@ namespace API
             app.UseStaticFiles();
             //for authentication for l8r tho
             app.UseAuthorization();
+            //from extension folder
+            app.UseSwaggerDocumentation();
 
             app.UseEndpoints(endpoints =>
             {
