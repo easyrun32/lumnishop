@@ -36,6 +36,11 @@ namespace Core.Specifications
         // this will have a listn of include statements we can pass
         public List<Expression<Func<T, object>>> Includes { get; } =
             new List<Expression<Func<T, object>>>();
+
+        public Expression<Func<T, object>> OrderBy { get; private set; }
+
+        public Expression<Func<T, object>> OrderByDescending { get; private set; }
+
         //we can access the method within the class
         // is why we use protected
         // Any child classes as well
@@ -43,6 +48,18 @@ namespace Core.Specifications
         {
             Includes.Add(includeExpression);
         }
+
+        protected void AddOrderBy(Expression<Func<T, object>> orderByExpression)
+        {
+            OrderBy = orderByExpression;
+        }
+
+        protected void AddOrderByDescending(Expression<Func<T, object>> orderByDescExpression)
+        {
+            OrderByDescending = orderByDescExpression;
+        }
+
+
 
 
     }

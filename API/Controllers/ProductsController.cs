@@ -40,7 +40,7 @@ namespace API.Controllers
         //action result that returns an http response
         // 200 request
         //synchranous request
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts(string sort)
         {
             //ToList is gonna execute a select query on our database and put em in products
             /*
@@ -50,7 +50,7 @@ namespace API.Controllers
             So you can use your buddy javascript to make it asyncronous
             */
 
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(sort);
 
             var products = await _productsRepo.ListAsync(spec);
 

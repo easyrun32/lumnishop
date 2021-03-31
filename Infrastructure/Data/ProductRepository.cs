@@ -28,6 +28,9 @@ namespace Infrastructure.Data
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
+
+
+
             return await _context.Products
              .Include(p => p.ProductType)
             .Include(p => p.ProductBrand)
@@ -36,7 +39,9 @@ namespace Infrastructure.Data
         }
 
         public async Task<IReadOnlyList<Product>> GetProductsAsync()
-        {   //quering the product list and adding product type and brand based
+        {
+
+            //quering the product list and adding product type and brand based
             // on the numnbers 
             return await _context.Products
             .Include(p => p.ProductType)
