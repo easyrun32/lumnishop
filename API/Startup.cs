@@ -49,6 +49,18 @@ namespace API
 
             services.AddSwaggerDocumentation();
 
+            //Angular setup for cors
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithOrigins("https://localhost:4200");
+                });
+            });
+
         }
         //DEPDENCY INJECTION CONTAINER
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +78,9 @@ namespace API
             app.UseRouting();
 
             app.UseStaticFiles();
+            //for Angular
+            app.UseCors("CorsPolicy");
+
             //for authentication for l8r tho
             app.UseAuthorization();
             //from extension folder

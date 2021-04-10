@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Dtos;
 using API.Errors;
+using API.Helpers;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
@@ -40,7 +41,8 @@ namespace API.Controllers
         //action result that returns an http response
         // 200 request
         //synchranous request
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts(string sort)
+        public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
+            [FromQuery] ProductSpecParams productParams)
         {
             //ToList is gonna execute a select query on our database and put em in products
             /*
@@ -50,13 +52,26 @@ namespace API.Controllers
             So you can use your buddy javascript to make it asyncronous
             */
 
-            var spec = new ProductsWithTypesAndBrandsSpecification(sort);
+            var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
+
+            var countSpec = new ProductsWithFilterForCountSpecification(productParams);
+
+            var totalItems = await _productsRepo.CountAsync(countSpec);
+
+
 
             var products = await _productsRepo.ListAsync(spec);
 
+            var data = _mapper.
+            Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+
             //strange syntax...
-            return Ok(_mapper.
-            Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
+            return Ok(new Pagination<ProductToReturnDto>(
+                productParams.PageIndex,
+                productParams.PageSize,
+                totalItems,
+                data
+                ));
         }
         //interpolation
         [HttpGet("{id}")]
