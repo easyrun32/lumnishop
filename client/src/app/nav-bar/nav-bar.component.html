@@ -1,0 +1,111 @@
+<div class="absolute-background">
+  <div class="absolute-background__top-color"></div>
+  <div class="absolute-background__middle-color"></div>
+  <div class="absolute-background__bottom-color"></div>
+</div>
+<div class="nav-bar-container">
+  <div class="nav-bar-container__top-color">
+    <div class="nav-bar-container__top">
+      <div class="nav-bar-container__top__left">
+        <div class="nav-bar-container__top__left__dunkin-guy-container">
+          <img src="assets/img/logo.svg" />
+        </div>
+        <div class="nav-bar-container__top__left__arrow-container">
+          <img src="assets/img/arrow.svg" />
+        </div>
+      </div>
+      <div class="nav-bar-container__top__right">
+        <div class="nav-bar-container__top__right__help">Help</div>
+        <div class="nav-bar-container__top__right__barline">
+          <div></div>
+        </div>
+        <div class="nav-bar-container__top__right__joinus">Join Us</div>
+        <div class="nav-bar-container__top__right__barline">
+          <div></div>
+        </div>
+        <div class="nav-bar-container__top__right__signin">Sign In</div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-bar-container__middle-color">
+    <div class="nav-bar-container__middle">
+      <div class="nav-bar-container__middle__left">
+        <img
+          src="assets/img/nikelogo.svg"
+          class="nav-bar-container__middle__left__nikelogo"
+        />
+      </div>
+
+      <ul class="nav-bar-container__middle__middle">
+        <li class="nav-bar-container__middle__middle__child">New Releases</li>
+        <li class="nav-bar-container__middle__middle__child">Men</li>
+        <li class="nav-bar-container__middle__middle__child">Women</li>
+        <li class="nav-bar-container__middle__middle__child">Kids</li>
+        <li class="nav-bar-container__middle__middle__child">Customize</li>
+        <li class="nav-bar-container__middle__middle__child">Sale</li>
+      </ul>
+
+      <div class="nav-bar-container__middle__right">
+        <div class="nav-bar-container__middle__right__search-container">
+          <div
+            class="nav-bar-container__middle__right__search-container__search-icon"
+          >
+            <img src="assets/img/searchbutton.svg" />
+          </div>
+          <input
+            placeholder="Search"
+            class="nav-bar-container__middle__right__search-container__input"
+          />
+        </div>
+        <div class="nav-bar-container__middle__right__heart-container">
+          <img
+            class="nav-bar-container__middle__right__heart-container__heart"
+            src="assets/img/heart.svg"
+          />
+        </div>
+        <div class="nav-bar-container__middle__right__cart-container">
+          <img
+            class="nav-bar-container__middle__right__cart-container__cart"
+            src="assets/img/cart.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-ngbd-carousel-navigation></app-ngbd-carousel-navigation>
+</div>
+
+<!-- Hamburger menu 
+ (click)="onClick('hello')"
+ (change)="toggleEditable($event)"
+ *ngIf="checked"
+-->
+<div
+  class="checked-blured-background"
+  (click)="onClickUnChecked()"
+  *ngIf="checked"
+></div>
+
+<input
+  type="checkbox"
+  class="openSidebarMenu"
+  id="openSidebarMenu"
+  #checkbox
+  [(ngModel)]="checked"
+/>
+<label for="openSidebarMenu" class="sidebarIconToggle">
+  <div class="spinner diagonal part-1"></div>
+  <div class="spinner horizontal"></div>
+  <div class="spinner diagonal part-2"></div>
+</label>
+<div id="sidebarMenu">
+  <ul class="sidebarMenuInner">
+    <li><span>New Releases </span></li>
+    <li><span>Men</span></li>
+    <li><span>Women </span></li>
+    <li><span>Kids</span></li>
+    <li><span>Customize</span></li>
+    <li><span>Sale up to 40% </span></li>
+    <li><span>SNKRS Calendar</span></li>
+  </ul>
+</div>

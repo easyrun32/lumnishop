@@ -1,0 +1,491 @@
+$navbar-height: 135px;
+$navbar-top-height: 36px;
+$navbar-middle-height: 50px;
+$navbar-bottom-height: 60px;
+.absolute-background {
+  // background-color: red;
+  height: $navbar-height;
+  width: 100vw;
+  position: absolute;
+  z-index: -1;
+  &__top-color {
+    background-color: #f5f5f5;
+    height: $navbar-top-height;
+  }
+  &__middle-color {
+    background-color: white;
+    height: $navbar-middle-height;
+  }
+  &__bottom-color {
+    @media screen and (max-width: 1000px) {
+      display: none;
+    }
+    background-color: #f5f5f5;
+    height: $navbar-bottom-height;
+  }
+}
+
+.nav-bar-container {
+  height: $navbar-height;
+  max-width: 1920px;
+  margin: auto;
+  // width: 100%;
+  background-color: green;
+
+  @media screen and (max-width: 1000px) {
+    height: 100px;
+  }
+  &__top-color {
+    background-color: #f5f5f5;
+  }
+  &__middle-color {
+    height: $navbar-middle-height;
+    background-color: white;
+  }
+
+  &__top {
+    @media screen and (max-width: 1000px) {
+      display: none;
+    }
+    // background-color: #f5f5f5;
+    height: $navbar-top-height;
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+      display: flex;
+      position: relative;
+      left: 40px;
+      // margin-left: 5vw;
+      height: $navbar-top-height;
+      width: 100px;
+      // background-color: cyan;
+      &__dunkin-guy-container {
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        height: 36px;
+        width: 50px;
+        // background-color: red;
+      }
+      &__arrow-container {
+        padding: 7px;
+        display: flex;
+        justify-content: center;
+        height: 36px;
+        width: 50px;
+        // background-color: gold;
+      }
+    }
+    &__right {
+      padding-top: 2px;
+
+      // margin-right: 10vh;
+      height: $navbar-top-height;
+      width: 250px;
+
+      display: flex;
+      &__barline {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $navbar-top-height;
+
+        width: 5px;
+        // border-left: 2px solid green;
+
+        // background-color: cyan;
+        div {
+          height: 15px;
+          width: 1px;
+          background-color: black;
+        }
+      }
+      &__help {
+        font-weight: 600;
+        font-size: 12px;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $navbar-top-height;
+        width: 70px;
+
+        // background-color: red;
+      }
+      &__joinus {
+        font-weight: 600;
+        font-size: 12px;
+        padding: 7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $navbar-top-height;
+        width: 70px;
+        // background-color: purple;
+      }
+      &__signin {
+        font-weight: 600;
+        font-size: 12px;
+        padding: 7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $navbar-top-height;
+        width: 70px;
+        // background-color: gold;
+      }
+    }
+  }
+  &__middle {
+    height: $navbar-middle-height;
+
+    display: flex;
+
+    position: relative;
+    justify-content: space-between;
+    // background-color: wheat;
+    &__middle {
+      position: absolute;
+      // margin-left: auto;
+      // margin-right: auto;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      //width: calc(100% - 680px);
+      width: calc(100% - 680px);
+
+      // width: 50%;
+      // background-color: violet;
+      text-align: center;
+      overflow: hidden;
+      height: $navbar-middle-height;
+      font-weight: 600;
+      @media screen and (max-width: 1000px) {
+        display: none;
+      }
+      &__child {
+        margin: 12px;
+        display: inline-block;
+      }
+    }
+
+    &__left {
+      &__nikelogo {
+        position: absolute;
+        // margin-top: 10px;
+        // padding: 5px;
+        // position: absolute;
+        // background-color: gray;
+
+        // height: fit-content;
+        // width: fit-content;
+        top: 10px;
+        left: 50px;
+        height: 100px;
+        width: 100px;
+      }
+    }
+
+    &__right {
+      // padding-top: 2px;
+      // position: relative;
+      // margin-right: 8.5vh;
+      left: 0px;
+      width: 330px;
+      display: flex;
+      // border-style: solid;
+      // border-color: rgb(201, 76, 76);
+      position: relative;
+      @media screen and (max-width: 1000px) {
+        justify-content: flex-end;
+        // background-color: violet;
+        margin-right: 50px;
+      }
+      &__cart-container {
+        // background-color: red;
+        width: 50px;
+        // margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        @media screen and (max-width: 1000px) {
+          margin-left: unset;
+        }
+        &__cart {
+          margin-top: 5px;
+          // top: 15px;
+          // left: 10px;
+          // position: absolute;
+          // background-color: yellowgreen;
+          height: 30px;
+          width: 30px;
+        }
+      }
+      &__heart-container {
+        // background-color: red;
+        width: 50px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        @media screen and (max-width: 1000px) {
+          margin-left: unset;
+          display: none;
+        }
+        &__heart {
+          margin-top: 5px;
+
+          height: 30px;
+          width: 30px;
+        }
+      }
+      &__search-container {
+        height: 38px;
+        background: #f5f5f5;
+        width: 170px;
+        margin: 6px;
+        border-radius: 20px;
+        @media screen and (max-width: 1000px) {
+          margin: unset;
+          border-radius: unset;
+          background: unset;
+          height: unset;
+
+          width: 50px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        }
+
+        &__search-icon {
+          @media screen and (max-width: 1000px) {
+            margin-top: 10px;
+            // background-color: yellow;
+            height: 30px;
+            width: 30px;
+          }
+
+          // background-color: red;
+          width: 20px;
+          margin: 6px;
+
+          float: left;
+        }
+        &__input {
+          @media screen and (max-width: 1000px) {
+            // background-color: red;
+            display: none;
+          }
+          // height: 10px;
+          // background-color: red;
+          // position: absolute;
+          // z-index: 1;
+          background-color: unset;
+          margin: 5px;
+          width: 120px;
+          float: right;
+          border: unset;
+          outline: unset;
+        }
+      }
+    }
+  }
+  &__bottom {
+    background-color: #f5f5f5;
+    height: $navbar-bottom-height;
+  }
+}
+
+.checked-blured-background {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background-color: rgba(153, 152, 152, 0.5);
+  // opacity: 0.5;
+  // background-color: gray;
+  display: none;
+  @media screen and (max-width: 1000px) {
+    display: block;
+  }
+}
+
+//hamburger menu
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+html,
+body {
+  overflow-x: hidden;
+  height: 100%;
+}
+body {
+  background: black;
+  padding: 0;
+  margin: 0;
+  font-family: "Varela Round", sans-serif;
+}
+
+.sidebarIconToggle {
+  cursor: pointer;
+  display: none;
+  right: 22px;
+  top: 14px;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+
+  height: 22px;
+  width: 22px;
+  @media screen and (max-width: 1000px) {
+    // background-color: black;
+    display: block;
+  }
+}
+
+.main {
+  margin: 0 auto;
+  display: block;
+  height: 100%;
+  margin-top: 60px;
+}
+.mainInner {
+  display: table;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+.mainInner div {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 3em;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+}
+#sidebarMenu {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0px;
+  width: 310px;
+  margin-top: 0px;
+  transform: translateX(310px);
+  transition: transform 250ms ease-in-out;
+  background: white;
+  // border-left: rgb(228, 226, 226) solid 0.5px;
+  display: none;
+  @media screen and (max-width: 1000px) {
+    display: block;
+  }
+}
+.sidebarMenuInner {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media screen and (max-width: 1000px) {
+    display: block;
+  }
+}
+.sidebarMenuInner li {
+  list-style: none;
+  color: black;
+  // text-transform: uppercase;
+  font-weight: bold;
+  // padding: 20px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  height: 50px;
+  width: 200px;
+  margin-left: 40px;
+}
+
+.sidebarMenuInner li span {
+  cursor: pointer;
+  font-size: 23px;
+  font-weight: 600;
+  align-self: flex-end;
+  display: block;
+
+  cursor: pointer;
+  color: black;
+}
+.sidebarMenuInner li span::first-letter {
+  // text-transform: uppercase;
+}
+.sidebarMenuInner li a {
+  color: black;
+  // text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+input[type="checkbox"]:checked ~ #sidebarMenu {
+  transform: translateX(0);
+}
+
+input[type="checkbox"] {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  display: none;
+}
+
+.spinner {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 2px;
+  width: 90%;
+  margin: 3px;
+  background-color: black;
+}
+.horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
+.diagonal.part-1 {
+  position: relative;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  float: left;
+}
+.diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
+input[type="checkbox"]:checked ~ .sidebarIconToggle > .horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  opacity: 0;
+}
+input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(135deg);
+  margin-top: 8px;
+  opacity: 0;
+}
+input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(-135deg);
+  margin-top: -9px;
+  opacity: 0;
+}
