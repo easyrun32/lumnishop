@@ -300,13 +300,14 @@ $navbar-bottom-height: 60px;
     height: $navbar-bottom-height;
   }
 }
-
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+//hamburger menu
 .checked-blured-background {
   height: 100vh;
   width: 100vw;
   position: fixed;
   top: 0;
-
+  z-index: 999;
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   background-color: rgba(153, 152, 152, 0.5);
@@ -317,9 +318,24 @@ $navbar-bottom-height: 60px;
     display: block;
   }
 }
+#sidebarMenu {
+  z-index: 999;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0px;
+  width: 310px;
+  margin-top: 0px;
+  transform: translateX(310px);
+  transition: transform 250ms ease-in-out;
+  background: white;
+  // border-left: rgb(228, 226, 226) solid 0.5px;
+  display: none;
+  @media screen and (max-width: 1000px) {
+    display: block;
+  }
+}
 
-//hamburger menu
-@import url("https://fonts.googleapis.com/css?family=Varela+Round");
 html,
 body {
   overflow-x: hidden;
@@ -372,22 +388,7 @@ body {
   font-weight: bold;
   letter-spacing: 1.25px;
 }
-#sidebarMenu {
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0px;
-  width: 310px;
-  margin-top: 0px;
-  transform: translateX(310px);
-  transition: transform 250ms ease-in-out;
-  background: white;
-  // border-left: rgb(228, 226, 226) solid 0.5px;
-  display: none;
-  @media screen and (max-width: 1000px) {
-    display: block;
-  }
-}
+
 .sidebarMenuInner {
   margin: 0;
   padding: 0;

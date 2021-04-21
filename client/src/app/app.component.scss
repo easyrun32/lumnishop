@@ -1,3 +1,16 @@
 // .body {
 //   overflow-x: hidden; /* needed because hiding the menu on the right side is not perfect,  */
 // }
+swiper {
+  height: 300px;
+  width: 500px;
+  z-index: -999;
+}
+.box {
+  height: 300px;
+  width: 300px;
+  background-color: red;
+}
+.swiper-slide {
+  width: 310px !important;
+}
